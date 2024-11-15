@@ -16,7 +16,7 @@
         Dim result As Double
 
         result = (WeightEarth * PlanetRatio)
-        Dim CalcWeight = result
+        return result
     End Function
 
 

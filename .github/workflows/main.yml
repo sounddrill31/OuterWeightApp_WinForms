@@ -57,7 +57,7 @@ jobs:
       # 24.04 is android 
       run: |
        dotnet build VowelCountApp/VowelCountApp.Android --configuration Release
-       dotnet publish VowelCountApp/VowelCountApp.Android --configuration Release --output ./output
+       dotnet publish -p:PublishSingleFile=true --self-contained true VowelCountApp/VowelCountApp.Android --configuration Release --output ./output
 
     - name: Zip folder on Linux 
       if: matrix.os == 'ubuntu-latest'

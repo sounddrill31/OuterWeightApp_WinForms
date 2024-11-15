@@ -1,40 +1,57 @@
-﻿Imports System.Collections.Specialized.BitVector32
-Imports LLama
-Imports LLama.Common
+﻿Public Class Form1
 
-Public Class Form1
-    Private Async Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
-        Dim modelPath As String = "C:\Users\admin\Downloads\llama-2-7b-chat.Q2_K.gguf"
+    Dim RatioEarth As Double = 1D
+    Dim RatioMercury As Double = 0.38D
+    Dim RatioMars As Double = 0.38D
+    Dim RatioJupiter As Double = 2.36D
+    Dim RatioSaturn As Double = 0.92D
+    Dim RatioVenus As Double = 0.9D
+    Dim RatioUranus As Double = 0.89D
+    Dim RatioNeptune As Double = 1.12D
+    Dim RatioMoon As Double = 0.17D
 
-        Dim parameters = New ModelParams(modelPath) With {
-            .ContextSize = 1024,
-            .GpuLayerCount = 5
-        }
 
-        Dim model = LLamaWeights.LoadFromFile(parameters)
-        Dim context = model.CreateContext(parameters)
-        Dim executor = New InteractiveExecutor(context)
+    Function CalcWeight(ByVal WeightEarth As Double, ByVal PlanetRatio As Double) As Double
+        ' local variable declaration */
+        Dim result As Double
 
-        Dim session = New ChatSession(executor, New ChatHistory())
+        result = (WeightEarth * PlanetRatio)
+        Dim FindMax = result
+    End Function
 
-        Dim inferenceParams = New InferenceParams() With {
-            .MaxTokens = 256,
-            .AntiPrompts = New List(Of String) From {"User:"}
-        }
 
-        Dim userInput As String = TextBox1.Text
-        TextBox1.Clear()
+    Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
-        TextBox2.AppendText($"User: {userInput}{vbCrLf}Assistant: ")
+    End Sub
 
-        Dim response = Await session.ChatAsync(New ChatHistory.Message(AuthorRole.User, userInput),
-                                               inferenceParams).ConfigureAwait(False)
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        WeightEntered.Text = ""
+        TextBox1.Text = ""
+        TextBox2.Text = ""
+        TextBox3.Text = ""
+        TextBox4.Text = ""
+        TextBox5.Text = ""
+        TextBox6.Text = ""
+        TextBox7.Text = ""
+        TextBox8.Text = ""
 
-        For Each Text In response
-            TextBox2.AppendText(Text)
-            Application.DoEvents()
-        Next
+    End Sub
 
-        TextBox2.AppendText(vbCrLf & vbCrLf)
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Close()
+    End Sub
+
+
+
+    Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
+        Dim weightEarth As Double = WeightEntered.Text
+        TextBox1.Text = CalcWeight(weightEarth, RatioMercury)
+        TextBox2.Text = CalcWeight(weightEarth, RatioVenus)
+        TextBox3.Text = WeightEntered.Text
+        TextBox4.Text = CalcWeight(weightEarth, RatioMars)
+        TextBox5.Text = CalcWeight(weightEarth, RatioJupiter)
+        TextBox6.Text = CalcWeight(weightEarth, RatioSaturn)
+        TextBox7.Text = CalcWeight(weightEarth, RatioUranus)
+        TextBox8.Text = CalcWeight(weightEarth, RatioNeptune)
     End Sub
 End Class

@@ -1,4 +1,4 @@
-# OuterWeightApp_WinForms
+# OuterWeightApp_WinForms [![Build and Upload .NET Project](https://github.com/sounddrill31/OuterWeightApp_WinForms/actions/workflows/main.yml/badge.svg)](https://github.com/sounddrill31/OuterWeightApp_WinForms/actions/workflows/main.yml)
  - Find the Value of Weight on Various Planets
  - Weight on Planet = Weight on Earth * Ratio of Planet
 
@@ -13,3 +13,6 @@
 | Uranus | Double | 0.89 |
 | Neptune | Double | 1.12 |
 <!--| Moon | Double | 0.17 |-->
+
+
+Inspired by the ISRO Field Trip

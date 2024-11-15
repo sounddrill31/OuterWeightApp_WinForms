@@ -16,7 +16,7 @@
         Dim result As Double
 
         result = (WeightEarth * PlanetRatio)
-        Dim FindMax = result
+        Dim CalcWeight = result
     End Function
 
 

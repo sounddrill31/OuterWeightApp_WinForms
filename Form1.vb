@@ -26,14 +26,14 @@
 
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
         WeightEntered.Text = ""
-        TextBox1.Text = ""
-        TextBox2.Text = ""
-        TextBox3.Text = ""
-        TextBox4.Text = ""
-        TextBox5.Text = ""
-        TextBox6.Text = ""
-        TextBox7.Text = ""
-        TextBox8.Text = ""
+        MercuryWeight.Text = ""
+        VenusWeight.Text = ""
+        EarthWeight.Text = ""
+        MarsWeight.Text = ""
+        JupiterWeight.Text = ""
+        SaturnWeight.Text = ""
+        UranusWeight.Text = ""
+        NeptuneWeight.Text = ""
 
     End Sub
 
@@ -45,13 +45,13 @@
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
         Dim weightEarth As Double = WeightEntered.Text
-        TextBox1.Text = CalcWeight(weightEarth, RatioMercury)
-        TextBox2.Text = CalcWeight(weightEarth, RatioVenus)
-        TextBox3.Text = WeightEntered.Text
-        TextBox4.Text = CalcWeight(weightEarth, RatioMars)
-        TextBox5.Text = CalcWeight(weightEarth, RatioJupiter)
-        TextBox6.Text = CalcWeight(weightEarth, RatioSaturn)
-        TextBox7.Text = CalcWeight(weightEarth, RatioUranus)
-        TextBox8.Text = CalcWeight(weightEarth, RatioNeptune)
+        MercuryWeight.Text = CalcWeight(weightEarth, RatioMercury)
+        VenusWeight.Text = CalcWeight(weightEarth, RatioVenus)
+        EarthWeight.Text = WeightEntered.Text
+        MarsWeight.Text = CalcWeight(weightEarth, RatioMars)
+        JupiterWeight.Text = CalcWeight(weightEarth, RatioJupiter)
+        SaturnWeight.Text = CalcWeight(weightEarth, RatioSaturn)
+        UranusWeight.Text = CalcWeight(weightEarth, RatioUranus)
+        NeptuneWeight.Text = CalcWeight(weightEarth, RatioNeptune)
     End Sub
 End Class

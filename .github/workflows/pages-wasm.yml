@@ -42,9 +42,9 @@ jobs:
            $filePathExe = Get-ChildItem -Path . -Recurse -Filter "OuterWeightApp_WinForms.exe" -ErrorAction SilentlyContinue
 
            if ($filePathExe) {
-             Write-Host "Found EXE File at: $($filePath.FullName)"
+             Write-Host "Found EXE File at: $($filePathExe.FullName)"
            } else {
-             Write-Host "index.html not found."
+             Write-Host "EXE not found."
            }
 
 
@@ -52,7 +52,7 @@ jobs:
            # Zip the contents of bin/Release/net6.0-windows/
 
            
-           Compress-Archive -Path ".\bin\Release\net6.0-windows\*" -DestinationPath ".\WinAppRunner\OuterWeightApp_WinForms.zip"
+           Compress-Archive -Path ".\bin\Release\net481\publish\*" -DestinationPath ".\WinAppRunner\OuterWeightApp_WinForms.zip"
            (Get-Content ".\WinAppRunner\WinAppRunner.htm") -replace 'var exeDefault = "notepad.exe";', 'var exeDefault = "OuterWeightApp_WinForms.exe";' | Set-Content ".\WinAppRunner\WinAppRunner.htm"
 
            # Debug

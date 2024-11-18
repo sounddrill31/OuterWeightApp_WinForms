@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>net481</TargetFramework>
     <StartupObject>Sub Main</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>

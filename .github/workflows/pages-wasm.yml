@@ -53,7 +53,7 @@ jobs:
 
            
            Compress-Archive -Path ".\bin\Release\net481\publish\*" -DestinationPath ".\WinAppRunner\OuterWeightApp_WinForms.zip"
-           (Get-Content ".\WinAppRunner\WinAppRunner.htm") -replace 'var exeDefault = "notepad.exe";', 'var exeDefault = "OuterWeightApp_WinForms.exe";' | Set-Content ".\WinAppRunner\WinAppRunner.htm"
+           # (Get-Content ".\WinAppRunner\WinAppRunner.htm") -replace 'var exeDefault = "notepad.exe";', 'var exeDefault = "OuterWeightApp_WinForms.exe";' | Set-Content ".\WinAppRunner\WinAppRunner.htm"
 
            # Debug
 

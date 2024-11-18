@@ -1,0 +1,64 @@
+#Source for Template: https://github.com/actions/upload-pages-artifact?tab=readme-ov-file#usage
+
+name: Build Pages
+on:
+    push:
+        branches:
+        - main
+    workflow_dispatch:
+
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  # Build job
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'  # Specify your .NET version here
+
+      - name: Setup Build Environment
+        run: dotnet workload install wasm-tools; dotnet workload restore
+      - name: Build static files
+        id: build
+        run: |
+           dotnet add package Winforms.Wasm 
+           dotnet build . --configuration Release
+           dotnet publish . --configuration Release
+
+           # Debug
+
+           $filePath = Get-ChildItem -Path . -Recurse -Filter "index.html" -ErrorAction SilentlyContinue
+
+           if ($filePath) {
+             Write-Host "Found index.html at: $($filePath.FullName)"
+           } else {
+             Write-Host "index.html not found."
+           }
+
+      - name: Upload static files as artifact
+        id: deployment
+        uses: actions/upload-pages-artifact@v3 # or specific "vX.X.X" version tag for this action
+        with:
+          path: bin/Release/dist/
+
+  # Deployment job
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

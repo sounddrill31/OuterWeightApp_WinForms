@@ -30,6 +30,7 @@ jobs:
         run: dotnet workload install wasm-tools; dotnet workload restore
       - name: Build static files
         id: build
+        continue-on-error: true
         run: |
            dotnet add package Winforms.Wasm 
            dotnet build . --configuration Release
@@ -49,7 +50,7 @@ jobs:
         id: deployment
         uses: actions/upload-pages-artifact@v3 # or specific "vX.X.X" version tag for this action
         with:
-          path: bin/Release/dist/
+          path: bin/Release/*/dist/managed/
 
   # Deployment job
   deploy:

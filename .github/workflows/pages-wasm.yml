@@ -50,7 +50,7 @@ jobs:
         id: deployment
         uses: actions/upload-pages-artifact@v3 # or specific "vX.X.X" version tag for this action
         with:
-          path: bin/Release/*/dist/managed/
+          path: bin/Release/net6.0-windows/dist/managed/
 
   # Deployment job
   deploy:
